@@ -1,0 +1,103 @@
+{% extends 'base/base.html' %}
+
+{% block container %}
+
+{% load static %}
+
+{% include 'include/header.html' %}
+
+    <section id="category">
+        <section class="wrapper">
+            <ul>
+                {% for category in categories %}
+                <li><a class="active" href="#">{{category.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+    </section>
+
+    <section id="blogs">
+        <section class="wrapper">
+            <div class="left">
+                <div class="top">
+                    {% for blog in blogs %}
+                    <div class="card">
+                        <img src="{{blog.image.url}}" alt="blog-image">
+                        <h3>
+                            <a href="{% url 'web:blog' id=blog.id %}">{{blog.title}}</a>
+                        </h3>
+                        <div>
+                            <span>{{blog.author.user.first_name}} {{blog.author.user.last_name}} </span>
+                            <span>{{blog.created_on}}</span>
+                        </div>
+                        <p>{{blog.short_description}}</p>
+                        <ul>
+                            {% for tag in blog.tags.all %}
+                            <li>{{tag.name}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="bottom">
+                    <div class="pagination">
+                        <a href="#" class="prev">
+                            <img src="{% static 'images/left-arrow.png' %}" alt="prev">
+                        </a>
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <span>...</span>
+                        <a href="#">7</a>
+                        <a href="#">8</a>
+                        <a href="#" class="next">
+                            <img src="{% static 'images/right-arrow.png' %}" alt="next">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <h1>Fiter Blogs</h1>
+                <form action="">
+                    <div class="sort">
+                        <h3>Sort by</h3>
+                        <div>
+                            <input type="radio" name="" id="">
+                            <span>Recently Added</span>
+                        </div>
+                        <div>
+                            <input type="radio" name="" id="">
+                            <span>A-Z Ascending</span>
+                        </div>
+                        <div>
+                            <input type="radio" name="" id="">
+                            <span>A-Z Descending</span>
+                        </div>
+                    </div>
+                    <div class="author">
+                        <h3>By Author</h3>
+                        {% for author in authors %}
+                        <div>
+                            <input type="checkbox" name="" id="">
+                            <span>{{author.user.first_name}} {{author.user.last_name}}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="tags">
+                        <h3>By Tags</h3>
+                        {% for tag in tags %}
+                        <div>
+                            <input type="checkbox" name="" id="">
+                            <span>{{tag.name}}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="submit">
+                        <input type="submit" value="Filter">
+                    </div>
+                </form>
+            </div>
+        </section>
+    </section>
+    
+{% endblock %}

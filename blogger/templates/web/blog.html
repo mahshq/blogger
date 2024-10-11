@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% block container %}
+
+{% load static %}
+
+{% include 'include/header.html' %}
+
+    <section id="blog-details">
+        <section class="wrapper">
+            <div class="left">
+                <h1>{{blog.title}}</h1>
+                <p>{{blog.short_description}}</p>
+                <div>
+                    <p>{{blog.author.user.first_name}}</p>
+                    <p>{{blog.created_on}}</p>
+                </div>
+                <img src="{{blog.image.url}}" alt="blog">
+                <p>{{blog.description}}</p>
+            </div>
+            <div class="right">
+                <h3>Recent Blogs</h3>
+                {% for blog in blogs %}
+                <div>
+                    <img src="{{blog.image.url}}" alt="blog">
+                    <a href="{% url 'web:blog' id=blog.id %}">
+                        <h3>{{blog.title}}</h3>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </section>
+
+
+    {% endblock %}

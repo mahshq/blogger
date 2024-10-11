@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+
+{% block container %}
+
+{% load static %}
+
+    <section id="login">
+        <section class="wrapper">
+            <div class="container">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="logo">
+                        <img src="{% static './images/logo.png' %}" alt="logo" />
+                    </div>
+                    <h1>Create Account</h1>
+                    <div class="form-control">
+                        <input type="text" name="username" id="" placeholder="Enter username">
+                    </div>
+                    <div class="form-control">
+                        <input type="text" name="first_name" id="" placeholder="Enter first name">
+                    </div>
+                    <div class="form-control">
+                        <input type="text" name="last_name" id="" placeholder="Enter last name">
+                    </div>
+                    <div class="form-control">
+                        <input type="password" name="password" id="" placeholder="Enter password">
+                    </div>
+                    <p>Already have an account? <a href="{% url 'web:login' %}">Login</a></p>
+                    <div class="btn">
+                        <input type="submit" value="Register">
+                    </div>
+                </form>
+            </div>
+        </section>
+    </section>
+    
+{% endblock %}

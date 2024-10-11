@@ -1,0 +1,30 @@
+{% load static %}
+    <header>
+        <section class="wrapper">
+            <div class="left">
+            <h1><a href="{% url 'web:index' %}"><img src="{% static 'images/logo.png' %}" alt="logo"></a></h1>
+            </div>
+            <div class="middle">
+                <form action="">
+                    <div>
+                        <input type="search" placeholder="Search blog...">
+                        <img src="{% static 'images/search.png' %}" alt="search" />
+                    </div>
+                </form>
+            </div>
+            <div class="right">
+                <ul>
+                    <li><a href="{% url 'web:index' %}">Home</a></li>
+                    <li><a href="{% url 'web:create' %}">Create</a></li>
+                    <li><a href="{% url 'web:account' %}">Account</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'web:logout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'web:login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </section>
+    </header>
+
+    
